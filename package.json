@@ -14,7 +14,10 @@
   "devDependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
     "jade": "^1.11.0",
+    "js-yaml": "^3.6.1",
     "mongodb": "^2.2.10",
     "should": "^7.1.0",
     "supertest": "^1.0.0"

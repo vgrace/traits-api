@@ -1,0 +1,1237 @@
+{
+ "swagger": "2.0",
+ "info": {
+  "version": "0.0.1",
+  "title": "Traits API"
+ },
+ "host": "localhost:10010",
+ "basePath": "/api",
+ "schemes": [
+  "http",
+  "https"
+ ],
+ "consumes": [
+  "application/json"
+ ],
+ "produces": [
+  "application/json"
+ ],
+ "paths": {
+  "/userTraits/{userid}": {
+   "x-swagger-router-controller": "user_traits",
+   "get": {
+    "operationId": "save_user_traits",
+    "description": "get a user traits",
+    "parameters": [
+     {
+      "name": "userid",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetUserTraitResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_user_traits",
+    "description": "update a user trait",
+    "parameters": [
+     {
+      "name": "userid",
+      "description": "user id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "usertrait",
+      "description": "User traits properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/UserTrait"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_user_traits",
+    "description": "delete a movie",
+    "parameters": [
+     {
+      "name": "userid",
+      "description": "User id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/description": {
+   "x-swagger-router-controller": "description",
+   "post": {
+    "operationId": "save_description",
+    "description": "add a new description",
+    "parameters": [
+     {
+      "name": "type",
+      "description": "description properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/Description"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/descriptions/{type}": {
+   "x-swagger-router-controller": "description",
+   "get": {
+    "operationId": "get_descriptions_by_type",
+    "description": "get descriptions by type",
+    "parameters": [
+     {
+      "name": "type",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetDescriptionListResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/description/{id}": {
+   "x-swagger-router-controller": "description",
+   "get": {
+    "operationId": "get_description",
+    "description": "get a description",
+    "parameters": [
+     {
+      "name": "id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetDescriptionResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_description",
+    "description": "update a description",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "description id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "description",
+      "description": "description properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/Description"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_description",
+    "description": "delete a description",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "Description id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/people": {
+   "x-swagger-router-controller": "people",
+   "get": {
+    "operationId": "get_all_people",
+    "description": "get people list",
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetPeopleListResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "post": {
+    "operationId": "save_people",
+    "description": "add a new person to the list",
+    "parameters": [
+     {
+      "name": "type",
+      "description": "People properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/People"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/people/{id}": {
+   "x-swagger-router-controller": "people",
+   "get": {
+    "operationId": "get_people",
+    "description": "get a person",
+    "parameters": [
+     {
+      "name": "id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetPeopleResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_people",
+    "description": "update a person",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "Person id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "people",
+      "description": "People properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/People"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_people",
+    "description": "delete a personality",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "Person id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/personality": {
+   "x-swagger-router-controller": "personality",
+   "get": {
+    "operationId": "get_all_personalities",
+    "description": "get personality list",
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetPersonalitysListResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "post": {
+    "operationId": "save_personality",
+    "description": "add a new personality to the list",
+    "parameters": [
+     {
+      "name": "type",
+      "description": "Personality properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/Personality"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/personality/{type}": {
+   "x-swagger-router-controller": "personality",
+   "get": {
+    "operationId": "get_personality",
+    "description": "get a personality",
+    "parameters": [
+     {
+      "name": "type",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetPersonalityResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_personality",
+    "description": "update a personality",
+    "parameters": [
+     {
+      "name": "type",
+      "description": "Personality type",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "personality",
+      "description": "Personality properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/Personality"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_personality",
+    "description": "delete a personality",
+    "parameters": [
+     {
+      "name": "type",
+      "description": "Personality type",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/userTypePart": {
+   "x-swagger-router-controller": "user_type_part",
+   "post": {
+    "operationId": "save_user_type_part",
+    "description": "add a new user type part to user",
+    "parameters": [
+     {
+      "name": "userid",
+      "description": "User id",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/UserTypePart"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/userTypePart/{userid}": {
+   "x-swagger-router-controller": "user_type_part",
+   "get": {
+    "operationId": "get_user_type_part",
+    "description": "get a user",
+    "parameters": [
+     {
+      "name": "userid",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetUserTypePartResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_user_type_part",
+    "description": "update a user type part",
+    "parameters": [
+     {
+      "name": "userid",
+      "description": "user id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "usertypepart",
+      "description": "User type part properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/UserTypePart"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_user_type_part",
+    "description": "delete a movie",
+    "parameters": [
+     {
+      "name": "userid",
+      "description": "User id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/user": {
+   "x-swagger-router-controller": "user",
+   "post": {
+    "operationId": "save_user",
+    "description": "add a new user to the list",
+    "parameters": [
+     {
+      "name": "email",
+      "description": "User properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/User"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/user/{id}": {
+   "x-swagger-router-controller": "user",
+   "get": {
+    "operationId": "get_user",
+    "description": "get a user",
+    "parameters": [
+     {
+      "name": "id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetUserResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "put": {
+    "operationId": "update_user",
+    "description": "update a movie",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "Movie id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     },
+     {
+      "name": "user",
+      "description": "user properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/User"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   },
+   "delete": {
+    "operationId": "delete_user",
+    "description": "delete a movie",
+    "parameters": [
+     {
+      "name": "id",
+      "description": "User id",
+      "type": "string",
+      "in": "path",
+      "required": true
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/swagger": {
+   "x-swagger-pipe": "swagger_raw"
+  }
+ },
+ "definitions": {
+  "GetDescriptionListResponse": {
+   "required": [
+    "descriptions"
+   ],
+   "properties": {
+    "descriptions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "title": {
+        "type": "string"
+       },
+       "description": {
+        "type": "string"
+       },
+       "tags": {
+        "type": "string"
+       },
+       "source": {
+        "type": "string"
+       },
+       "timestamp": {
+        "type": "string"
+       },
+       "personalitytype": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "GetPeopleListResponse": {
+   "required": [
+    "people_list"
+   ],
+   "properties": {
+    "people_list": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "name": {
+        "type": "string"
+       },
+       "lastname": {
+        "type": "string"
+       },
+       "occupation": {
+        "type": "string"
+       },
+       "isreal": {
+        "type": "string"
+       },
+       "from": {
+        "type": "string"
+       },
+       "personalitytype": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "GetPersonalitysListResponse": {
+   "required": [
+    "personalities"
+   ],
+   "properties": {
+    "personalities": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "type": {
+        "type": "string"
+       },
+       "totalfrequency": {
+        "type": "string"
+       },
+       "malefrequency": {
+        "type": "string"
+       },
+       "femalefrequency": {
+        "type": "string"
+       },
+       "description": {
+        "type": "string"
+       },
+       "typefull": {
+        "type": "string"
+       },
+       "color": {
+        "type": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "GetUserResponse": {
+   "required": [
+    "id",
+    "email",
+    "password"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "password": {
+     "type": "string"
+    }
+   }
+  },
+  "GetPersonalityResponse": {
+   "required": [
+    "type"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "type": {
+     "type": "string"
+    },
+    "totalfrequency": {
+     "type": "string"
+    },
+    "malefrequency": {
+     "type": "string"
+    },
+    "femalefrequency": {
+     "type": "string"
+    },
+    "description": {
+     "type": "string"
+    },
+    "typefull": {
+     "type": "string"
+    },
+    "color": {
+     "type": "string"
+    }
+   }
+  },
+  "GetPeopleResponse": {
+   "required": [
+    "id"
+   ],
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "lastname": {
+     "type": "string"
+    },
+    "occupation": {
+     "type": "string"
+    },
+    "isreal": {
+     "type": "string"
+    },
+    "from": {
+     "type": "string"
+    },
+    "personalitytype": {
+     "type": "string"
+    }
+   }
+  },
+  "GetDescriptionResponse": {
+   "required": [
+    "title"
+   ],
+   "properties": {
+    "title": {
+     "type": "string"
+    },
+    "description": {
+     "type": "string"
+    },
+    "tags": {
+     "type": "string"
+    },
+    "source": {
+     "type": "string"
+    },
+    "timestamp": {
+     "type": "string"
+    },
+    "personalitytype": {
+     "type": "string"
+    }
+   }
+  },
+  "GetUserTypePartResponse": {
+   "properties": {
+    "id": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "password": {
+     "type": "string"
+    }
+   }
+  },
+  "GetUserTraitResponse": {
+   "properties": {
+    "trait": {
+     "type": "string"
+    },
+    "isme": {
+     "type": "string"
+    }
+   }
+  },
+  "UserTypePart": {
+   "type": "object",
+   "properties": {
+    "userid": {
+     "type": "string",
+     "description": "task object name"
+    },
+    "type_percentage": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/TypePart"
+     }
+    }
+   }
+  },
+  "TypePart": {
+   "type": "object",
+   "properties": {
+    "personalitytype": {
+     "type": "string",
+     "description": "Personality type"
+    },
+    "percentage": {
+     "type": "string",
+     "description": "Personality percentage"
+    },
+    "lastupdate": {
+     "type": "string",
+     "format": "date-time",
+     "description": "Last update. E.g. '2016-06-17T15:28:34Z' (RFC 3339, ISO 8601)"
+    }
+   }
+  },
+  "UserTrait": {
+   "type": "object",
+   "properties": {
+    "userid": {
+     "type": "string",
+     "description": "task object name"
+    },
+    "traits": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Trait"
+     }
+    }
+   }
+  },
+  "Trait": {
+   "type": "object",
+   "properties": {
+    "trait": {
+     "type": "string",
+     "description": "Personality trait"
+    },
+    "isme": {
+     "type": "string",
+     "description": "Is it me?"
+    }
+   }
+  },
+  "User": {
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string",
+     "description": "task object name"
+    },
+    "password": {
+     "type": "string",
+     "description": "task object password"
+    },
+    "name": {
+     "type": "string",
+     "description": "user name"
+    },
+    "Lastname": {
+     "type": "string",
+     "description": "user lastname"
+    }
+   },
+   "required": [
+    "email",
+    "password"
+   ]
+  },
+  "Personality": {
+   "type": "object",
+   "properties": {
+    "type": {
+     "type": "string",
+     "description": "task object name"
+    },
+    "totalfrequency": {
+     "type": "string",
+     "description": "task description"
+    },
+    "malefrequency": {
+     "type": "string",
+     "description": "task description"
+    },
+    "femalefrequency": {
+     "type": "string",
+     "description": "task description"
+    },
+    "description": {
+     "type": "string",
+     "description": "task description"
+    },
+    "typefull": {
+     "type": "string",
+     "description": "task description"
+    },
+    "color": {
+     "type": "string",
+     "description": "task description"
+    }
+   },
+   "required": [
+    "type"
+   ]
+  },
+  "People": {
+   "type": "object",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "lastname": {
+     "type": "string"
+    },
+    "occupation": {
+     "type": "string"
+    },
+    "isreal": {
+     "type": "string"
+    },
+    "from": {
+     "type": "string"
+    },
+    "personalitytype": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "name"
+   ]
+  },
+  "Description": {
+   "type": "object",
+   "properties": {
+    "title": {
+     "type": "string"
+    },
+    "description": {
+     "type": "string"
+    },
+    "tags": {
+     "type": "string"
+    },
+    "source": {
+     "type": "string"
+    },
+    "timestamp": {
+     "type": "string"
+    },
+    "personalitytype": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "title"
+   ]
+  },
+  "GeneralResponse": {
+   "type": "object",
+   "properties": {
+    "success": {
+     "type": "number",
+     "description": "returns 1 if successful"
+    },
+    "description": {
+     "type": "string",
+     "description": "a short comment"
+    }
+   },
+   "required": [
+    "success",
+    "description"
+   ]
+  },
+  "ErrorResponse": {
+   "required": [
+    "message"
+   ],
+   "properties": {
+    "message": {
+     "type": "string"
+    }
+   }
+  }
+ }
+}
