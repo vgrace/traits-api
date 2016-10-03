@@ -21,6 +21,9 @@
    "x-swagger-router-controller": "user_traits",
    "get": {
     "operationId": "save_user_traits",
+    "tags": [
+     "User Traits"
+    ],
     "description": "get a user traits",
     "parameters": [
      {
@@ -47,6 +50,9 @@
    },
    "put": {
     "operationId": "update_user_traits",
+    "tags": [
+     "User Traits"
+    ],
     "description": "update a user trait",
     "parameters": [
      {
@@ -83,6 +89,9 @@
    },
    "delete": {
     "operationId": "delete_user_traits",
+    "tags": [
+     "User Traits"
+    ],
     "description": "delete a movie",
     "parameters": [
      {
@@ -113,6 +122,9 @@
    "x-swagger-router-controller": "description",
    "post": {
     "operationId": "save_description",
+    "tags": [
+     "Description"
+    ],
     "description": "add a new description",
     "parameters": [
      {
@@ -145,6 +157,9 @@
    "x-swagger-router-controller": "description",
    "get": {
     "operationId": "get_descriptions_by_type",
+    "tags": [
+     "Description"
+    ],
     "description": "get descriptions by type",
     "parameters": [
      {
@@ -174,6 +189,9 @@
    "x-swagger-router-controller": "description",
    "get": {
     "operationId": "get_description",
+    "tags": [
+     "Description"
+    ],
     "description": "get a description",
     "parameters": [
      {
@@ -200,6 +218,9 @@
    },
    "put": {
     "operationId": "update_description",
+    "tags": [
+     "Description"
+    ],
     "description": "update a description",
     "parameters": [
      {
@@ -236,6 +257,9 @@
    },
    "delete": {
     "operationId": "delete_description",
+    "tags": [
+     "Description"
+    ],
     "description": "delete a description",
     "parameters": [
      {
@@ -266,6 +290,9 @@
    "x-swagger-router-controller": "people",
    "get": {
     "operationId": "get_all_people",
+    "tags": [
+     "People"
+    ],
     "description": "get people list",
     "responses": {
      "200": {
@@ -284,6 +311,9 @@
    },
    "post": {
     "operationId": "save_people",
+    "tags": [
+     "People"
+    ],
     "description": "add a new person to the list",
     "parameters": [
      {
@@ -316,6 +346,9 @@
    "x-swagger-router-controller": "people",
    "get": {
     "operationId": "get_people",
+    "tags": [
+     "People"
+    ],
     "description": "get a person",
     "parameters": [
      {
@@ -342,6 +375,9 @@
    },
    "put": {
     "operationId": "update_people",
+    "tags": [
+     "People"
+    ],
     "description": "update a person",
     "parameters": [
      {
@@ -378,6 +414,9 @@
    },
    "delete": {
     "operationId": "delete_people",
+    "tags": [
+     "People"
+    ],
     "description": "delete a personality",
     "parameters": [
      {
@@ -408,6 +447,9 @@
    "x-swagger-router-controller": "personality",
    "get": {
     "operationId": "get_all_personalities",
+    "tags": [
+     "Personality"
+    ],
     "description": "get personality list",
     "responses": {
      "200": {
@@ -426,6 +468,9 @@
    },
    "post": {
     "operationId": "save_personality",
+    "tags": [
+     "Personality"
+    ],
     "description": "add a new personality to the list",
     "parameters": [
      {
@@ -458,6 +503,9 @@
    "x-swagger-router-controller": "personality",
    "get": {
     "operationId": "get_personality",
+    "tags": [
+     "Personality"
+    ],
     "description": "get a personality",
     "parameters": [
      {
@@ -484,6 +532,9 @@
    },
    "put": {
     "operationId": "update_personality",
+    "tags": [
+     "Personality"
+    ],
     "description": "update a personality",
     "parameters": [
      {
@@ -520,6 +571,9 @@
    },
    "delete": {
     "operationId": "delete_personality",
+    "tags": [
+     "Personality"
+    ],
     "description": "delete a personality",
     "parameters": [
      {
@@ -550,6 +604,9 @@
    "x-swagger-router-controller": "user_type_part",
    "post": {
     "operationId": "save_user_type_part",
+    "tags": [
+     "User Type Part"
+    ],
     "description": "add a new user type part to user",
     "parameters": [
      {
@@ -582,6 +639,9 @@
    "x-swagger-router-controller": "user_type_part",
    "get": {
     "operationId": "get_user_type_part",
+    "tags": [
+     "User Type Part"
+    ],
     "description": "get a user",
     "parameters": [
      {
@@ -608,6 +668,9 @@
    },
    "put": {
     "operationId": "update_user_type_part",
+    "tags": [
+     "User Type Part"
+    ],
     "description": "update a user type part",
     "parameters": [
      {
@@ -644,6 +707,9 @@
    },
    "delete": {
     "operationId": "delete_user_type_part",
+    "tags": [
+     "User Type Part"
+    ],
     "description": "delete a movie",
     "parameters": [
      {
@@ -674,6 +740,9 @@
    "x-swagger-router-controller": "user",
    "post": {
     "operationId": "save_user",
+    "tags": [
+     "User"
+    ],
     "description": "add a new user to the list",
     "parameters": [
      {
@@ -706,6 +775,9 @@
    "x-swagger-router-controller": "user",
    "get": {
     "operationId": "get_user",
+    "tags": [
+     "User"
+    ],
     "description": "get a user",
     "parameters": [
      {
@@ -732,6 +804,9 @@
    },
    "put": {
     "operationId": "update_user",
+    "tags": [
+     "User"
+    ],
     "description": "update a movie",
     "parameters": [
      {
@@ -768,7 +843,10 @@
    },
    "delete": {
     "operationId": "delete_user",
-    "description": "delete a movie",
+    "tags": [
+     "User"
+    ],
+    "description": "delete a user",
     "parameters": [
      {
       "name": "id",
