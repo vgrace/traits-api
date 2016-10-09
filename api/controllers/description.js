@@ -1,65 +1,38 @@
-﻿'use strict';
+﻿(function (description) {
 
-module.exports = { save_description, update_description, get_description, get_descriptions_by_type, delete_description };
+    var data = require('../../data');
 
-//POST /user operationId
-function save_description(req, res, next) {
-    var description = req.body;
-    res.json({ success: 1, description: "description added" });
-}
+    description.save_description = function (req, res, next) {
+        var person = req.body;
+        res.setHeader('Content-Type', 'application/json');
+        data.addDescription(person, function (err, descriptionSaved) {
+            if (err) {
+                var ret_err = {
+                    "message": err
+                };
+                res.status(500).send(ret_err);
+            }
+            else {
+                console.log(descriptionSaved);
+                res.json({ success: 1, description: "Description added" });
+            }
+        });
+    }
 
-//PUT /movie/{id} operationId
-function update_description(req, res, next) {
-    var id = req.swagger.params.id.value; //req.swagger contains the path parameters
-    var description = req.body;
+    description.get_descriptions_by_type = function(req, res, next) {
+        var type = req.swagger.params.type.value;
+        data.getDescriptionsByType(type, function (err, descriptions) {
+            res.setHeader('Content-Type', 'application/json');
+            if (err) {
+                var ret_err = {
+                    "message": err
+                };
+                res.status(500).send(ret_err);
+            }
+            else {
+                res.send(descriptions);
+            }
+        });
+    }
 
-    res.json({ success: 1, description: "description updated" });
-
-}
-
-//GET /movie/{id} operationId
-function get_description(req, res, next) {
-    var id = req.swagger.params.id.value; //req.swagger contains the path parameters
-    var description = {
-        id: "123",
-        title: "fdsfs",
-        description: "add",
-        tags: "one,two",
-        source: "asd",
-        timestamp: "2016-09-30T07:32:48.545Z",
-        personalitytype: "INTJ"
-    };
-    res.json(description);
-}
-
-//GET /personality/{type} operationId
-function get_descriptions_by_type(req, res, next) {
-    var type = req.swagger.params.type.value;
-    var descriptions = [
-        {
-            id: "123",
-            title: "fdsfs",
-            description: "add",
-            tags: "one,two",
-            source: "asd",
-            timestamp: "2016-09-30T07:32:48.545Z",
-            personalitytype: "INTJ"
-        },
-        {
-            id: "456",
-            title: "fdsfs",
-            description: "add",
-            tags: "one,two",
-            source: "asd",
-            timestamp: "2016-09-30T07:32:48.545Z",
-            personalitytype: "INTJ"
-        }
-    ];
-    res.json(descriptions);
-}
-
-//DELETE /movie/{id} operationId
-function delete_description(req, res, next) {
-    var id = req.swagger.params.id.value;
-    res.json({ success: 1, description: "description deleted!" });
-}
+})(module.exports);

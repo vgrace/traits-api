@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "0.0.1"
-  title: Traits API
+  title: Traits API Fartface
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths 
@@ -18,16 +18,40 @@ consumes:
 produces:
   - application/json
 paths:
-  /userTraits/{userid}:
+  /userTraits:
+    # our controller name
+    x-swagger-router-controller: user_traits
+    post:
+      operationId: save_user_traits
+      tags: [User Traits]
+      description: add a new user traits to user
+      # movie info to be stored
+      parameters:
+        - name: username
+          description: Username
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UserTraits"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /userTraits/{username}:
     # our controller name
     x-swagger-router-controller: user_traits
     get:
-      operationId: save_user_traits
+      operationId: get_user_traits
       tags: [User Traits]
       description: get a user traits
       # define the type of response for Success "200" and Error
       parameters:
-        - name: userid
+        - name: username
           type: string
           in: path
           required: true
@@ -35,7 +59,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/GetUserTraitResponse"
+            $ref: "#/definitions/GeneralResponse"
         default:
           description: Error
           schema:
@@ -46,8 +70,8 @@ paths:
       description: update a user trait
       # define the parameters
       parameters:
-        - name: userid
-          description: user id
+        - name: username
+          description: Username
           type: string
           in: path
           required: true
@@ -56,7 +80,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/UserTrait"
+            $ref: "#/definitions/UserTraits"
       responses:
         "200":
           description: Success
@@ -72,8 +96,8 @@ paths:
       description: delete a movie
       # define the parameters
       parameters:
-        - name: userid
-          description: User id
+        - name: username
+          description: Username
           type: string
           in: path
           required: true
@@ -132,74 +156,6 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /description/{id}:
-    # our controller name
-    x-swagger-router-controller: description
-    get:
-      operationId: get_description
-      tags: [Description]
-      description: get a description
-      # define the type of response for Success "200" and Error
-      parameters:
-        - name: id
-          type: string
-          in: path
-          required: true
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/GetDescriptionResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    put:
-      operationId: update_description
-      tags: [Description]
-      description: update a description
-      # define the parameters
-      parameters:
-        - name: id
-          description: description id
-          type: string
-          in: path
-          required: true
-        - name: description
-          description: description properties
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/Description"
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/GeneralResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    delete:
-      operationId: delete_description
-      tags: [Description]
-      description: delete a description
-      # define the parameters
-      parameters:
-        - name: id
-          description: Description id
-          type: string
-          in: path
-          required: true
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/GeneralResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /people:
     # our controller name
     x-swagger-router-controller: people
@@ -238,16 +194,16 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /people/{id}:
+  /people/{type}:
     # our controller name
     x-swagger-router-controller: people
     get:
-      operationId: get_people
+      operationId: get_people_by_type
       tags: [People]
-      description: get a person
+      description: get people by type
       # define the type of response for Success "200" and Error
       parameters:
-        - name: id
+        - name: type
           type: string
           in: path
           required: true
@@ -255,57 +211,11 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/GetPeopleResponse"
+            $ref: "#/definitions/GetPeopleListResponse"
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-    put:
-      operationId: update_people
-      tags: [People]
-      description: update a person
-      # define the parameters
-      parameters:
-        - name: id
-          description: Person id
-          type: string
-          in: path
-          required: true
-        - name: people
-          description: People properties
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/People"
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/GeneralResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    delete:
-      operationId: delete_people
-      tags: [People]
-      description: delete a personality
-      # define the parameters
-      parameters:
-        - name: id
-          description: Person id
-          type: string
-          in: path
-          required: true
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/GeneralResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"  
   /personality:
     # our controller name
     x-swagger-router-controller: personality
@@ -421,8 +331,8 @@ paths:
       description: add a new user type part to user
       # movie info to be stored
       parameters:
-        - name: userid
-          description: User id
+        - name: username
+          description: Username
           in: body
           required: true
           schema:
@@ -436,8 +346,8 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /userTypePart/{userid}:
-    # our controller name
+  /userTypePart/{username}:
+    # our controller name 
     x-swagger-router-controller: user_type_part
     get:
       operationId: get_user_type_part
@@ -445,7 +355,7 @@ paths:
       description: get a user
       # define the type of response for Success "200" and Error
       parameters:
-        - name: userid
+        - name: username
           type: string
           in: path
           required: true
@@ -453,7 +363,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/GetUserTypePartResponse"
+            $ref: "#/definitions/GeneralResponse"
         default:
           description: Error
           schema:
@@ -464,8 +374,8 @@ paths:
       description: update a user type part
       # define the parameters
       parameters:
-        - name: userid
-          description: user id
+        - name: username
+          description: username
           type: string
           in: path
           required: true
@@ -490,8 +400,8 @@ paths:
       description: delete a movie
       # define the parameters
       parameters:
-        - name: userid
-          description: User id
+        - name: username
+          description: Username
           type: string
           in: path
           required: true
@@ -523,13 +433,37 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/GeneralResponse"
+            $ref: "#/definitions/GetUserResponse"
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /user/{id}:
+  /usersignin:
     # our controller name
+    x-swagger-router-controller: user
+    post:
+      operationId: user_signin
+      tags: [User]
+      description: add a new user to the list
+      # movie info to be stored
+      parameters:
+        - name: email
+          description: User properties
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UserSignin"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetUserResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user/{username}:
+    # our controller name dfsdf
     x-swagger-router-controller: user
     get:
       operationId: get_user
@@ -537,7 +471,7 @@ paths:
       description: get a user
       # define the type of response for Success "200" and Error
       parameters:
-        - name: id
+        - name: username
           type: string
           in: path
           required: true
@@ -550,14 +484,14 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-    put:
+    patch:
       operationId: update_user
       tags: [User]
-      description: update a movie
+      description: update a user
       # define the parameters
       parameters:
-        - name: id
-          description: Movie id
+        - name: username
+          description: Username
           type: string
           in: path
           required: true
@@ -566,7 +500,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/User"
+            $ref: "#/definitions/UpdateUser"
       responses:
         "200":
           description: Success
@@ -582,7 +516,7 @@ paths:
       description: delete a user
       # define the parameters
       parameters:
-        - name: id
+        - name: username
           description: User id
           type: string
           in: path
@@ -650,7 +584,7 @@ definitions:
     required:
       - personalities
     properties:
-      # The array of movies
+      # The array of users
       personalities:
         type: array
         items: 
@@ -674,16 +608,30 @@ definitions:
               type: string
   GetUserResponse:
     required:
-      - id
       - email
-      - password
     properties:
       id:
         type: string
+      name:
+        type: string
+      lastname:
+        type: string
       email: 
         type: string
-      password:
+      username:
         type: string
+      passwordHash:
+        type: string
+      salt:
+        type: string
+      usertypeparts:
+        type: array
+        items:
+          $ref: "#/definitions/TypePart"
+      usertraits:
+        type: array
+        items:
+          $ref: "#/definitions/Trait"
   GetPersonalityResponse:
     required:
       - type
@@ -704,60 +652,12 @@ definitions:
         type: string
       color:
         type: string
-  GetPeopleResponse:
-    required:
-      - id
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      lastname:
-        type: string
-      occupation:
-        type: string
-      isreal:
-        type: string
-      from:
-        type: string
-      personalitytype:
-        type: string
-  GetDescriptionResponse:
-    required:
-      - title
-    properties:
-      title:
-        type: string
-      description:
-        type: string
-      tags:
-        type: string
-      source:
-        type: string
-      timestamp:
-        type: string
-      personalitytype:
-        type: string
-  GetUserTypePartResponse:
-    properties:
-      id:
-        type: string
-      email: 
-        type: string
-      password:
-        type: string
-  GetUserTraitResponse:
-    properties:
-      trait:
-        type: string
-      isme: 
-        type: string
   UserTypePart:
     type: object
     properties:
-      userid:
+      username:
         type: string
-        description: task object name
+        description: username
       type_percentage:
         type: array
         items: 
@@ -775,12 +675,12 @@ definitions:
         type: string
         format: date-time
         description: Last update. E.g. '2016-06-17T15:28:34Z' (RFC 3339, ISO 8601)
-  UserTrait:
+  UserTraits:
     type: object
     properties:
-      userid:
+      username:
         type: string
-        description: task object name
+        description: Username
       traits:
         type: array
         items: 
@@ -806,12 +706,30 @@ definitions:
       name:
         type: string
         description: user name
-      Lastname:
+      lastname:
         type: string
         description: user lastname
     required:
       - email
       - password
+  UpdateUser:
+    type: object
+    properties:
+      name:
+        type: string
+        description: user name
+      lastname:
+        type: string
+        description: user lastname
+  UserSignin:
+    type: object
+    properties:
+      email:
+        type: string
+        description: user email
+      password:
+        type: string
+        description: user password
   Personality:
     type: object
     properties:

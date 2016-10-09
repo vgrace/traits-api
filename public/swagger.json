@@ -2,7 +2,7 @@
  "swagger": "2.0",
  "info": {
   "version": "0.0.1",
-  "title": "Traits API"
+  "title": "Traits API Fartface"
  },
  "host": "localhost:10010",
  "basePath": "/api",
@@ -17,17 +17,52 @@
   "application/json"
  ],
  "paths": {
-  "/userTraits/{userid}": {
+  "/userTraits": {
+   "x-swagger-router-controller": "user_traits",
+   "post": {
+    "operationId": "save_user_traits",
+    "tags": [
+     "User Traits"
+    ],
+    "description": "add a new user traits to user",
+    "parameters": [
+     {
+      "name": "username",
+      "description": "Username",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/UserTraits"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GeneralResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/userTraits/{username}": {
    "x-swagger-router-controller": "user_traits",
    "get": {
-    "operationId": "save_user_traits",
+    "operationId": "get_user_traits",
     "tags": [
      "User Traits"
     ],
     "description": "get a user traits",
     "parameters": [
      {
-      "name": "userid",
+      "name": "username",
       "type": "string",
       "in": "path",
       "required": true
@@ -37,7 +72,7 @@
      "200": {
       "description": "Success",
       "schema": {
-       "$ref": "#/definitions/GetUserTraitResponse"
+       "$ref": "#/definitions/GeneralResponse"
       }
      },
      "default": {
@@ -56,8 +91,8 @@
     "description": "update a user trait",
     "parameters": [
      {
-      "name": "userid",
-      "description": "user id",
+      "name": "username",
+      "description": "Username",
       "type": "string",
       "in": "path",
       "required": true
@@ -68,7 +103,7 @@
       "in": "body",
       "required": true,
       "schema": {
-       "$ref": "#/definitions/UserTrait"
+       "$ref": "#/definitions/UserTraits"
       }
      }
     ],
@@ -95,8 +130,8 @@
     "description": "delete a movie",
     "parameters": [
      {
-      "name": "userid",
-      "description": "User id",
+      "name": "username",
+      "description": "Username",
       "type": "string",
       "in": "path",
       "required": true
@@ -185,107 +220,6 @@
     }
    }
   },
-  "/description/{id}": {
-   "x-swagger-router-controller": "description",
-   "get": {
-    "operationId": "get_description",
-    "tags": [
-     "Description"
-    ],
-    "description": "get a description",
-    "parameters": [
-     {
-      "name": "id",
-      "type": "string",
-      "in": "path",
-      "required": true
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Success",
-      "schema": {
-       "$ref": "#/definitions/GetDescriptionResponse"
-      }
-     },
-     "default": {
-      "description": "Error",
-      "schema": {
-       "$ref": "#/definitions/ErrorResponse"
-      }
-     }
-    }
-   },
-   "put": {
-    "operationId": "update_description",
-    "tags": [
-     "Description"
-    ],
-    "description": "update a description",
-    "parameters": [
-     {
-      "name": "id",
-      "description": "description id",
-      "type": "string",
-      "in": "path",
-      "required": true
-     },
-     {
-      "name": "description",
-      "description": "description properties",
-      "in": "body",
-      "required": true,
-      "schema": {
-       "$ref": "#/definitions/Description"
-      }
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Success",
-      "schema": {
-       "$ref": "#/definitions/GeneralResponse"
-      }
-     },
-     "default": {
-      "description": "Error",
-      "schema": {
-       "$ref": "#/definitions/ErrorResponse"
-      }
-     }
-    }
-   },
-   "delete": {
-    "operationId": "delete_description",
-    "tags": [
-     "Description"
-    ],
-    "description": "delete a description",
-    "parameters": [
-     {
-      "name": "id",
-      "description": "Description id",
-      "type": "string",
-      "in": "path",
-      "required": true
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Success",
-      "schema": {
-       "$ref": "#/definitions/GeneralResponse"
-      }
-     },
-     "default": {
-      "description": "Error",
-      "schema": {
-       "$ref": "#/definitions/ErrorResponse"
-      }
-     }
-    }
-   }
-  },
   "/people": {
    "x-swagger-router-controller": "people",
    "get": {
@@ -342,17 +276,17 @@
     }
    }
   },
-  "/people/{id}": {
+  "/people/{type}": {
    "x-swagger-router-controller": "people",
    "get": {
-    "operationId": "get_people",
+    "operationId": "get_people_by_type",
     "tags": [
      "People"
     ],
-    "description": "get a person",
+    "description": "get people by type",
     "parameters": [
      {
-      "name": "id",
+      "name": "type",
       "type": "string",
       "in": "path",
       "required": true
@@ -362,76 +296,7 @@
      "200": {
       "description": "Success",
       "schema": {
-       "$ref": "#/definitions/GetPeopleResponse"
-      }
-     },
-     "default": {
-      "description": "Error",
-      "schema": {
-       "$ref": "#/definitions/ErrorResponse"
-      }
-     }
-    }
-   },
-   "put": {
-    "operationId": "update_people",
-    "tags": [
-     "People"
-    ],
-    "description": "update a person",
-    "parameters": [
-     {
-      "name": "id",
-      "description": "Person id",
-      "type": "string",
-      "in": "path",
-      "required": true
-     },
-     {
-      "name": "people",
-      "description": "People properties",
-      "in": "body",
-      "required": true,
-      "schema": {
-       "$ref": "#/definitions/People"
-      }
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Success",
-      "schema": {
-       "$ref": "#/definitions/GeneralResponse"
-      }
-     },
-     "default": {
-      "description": "Error",
-      "schema": {
-       "$ref": "#/definitions/ErrorResponse"
-      }
-     }
-    }
-   },
-   "delete": {
-    "operationId": "delete_people",
-    "tags": [
-     "People"
-    ],
-    "description": "delete a personality",
-    "parameters": [
-     {
-      "name": "id",
-      "description": "Person id",
-      "type": "string",
-      "in": "path",
-      "required": true
-     }
-    ],
-    "responses": {
-     "200": {
-      "description": "Success",
-      "schema": {
-       "$ref": "#/definitions/GeneralResponse"
+       "$ref": "#/definitions/GetPeopleListResponse"
       }
      },
      "default": {
@@ -610,8 +475,8 @@
     "description": "add a new user type part to user",
     "parameters": [
      {
-      "name": "userid",
-      "description": "User id",
+      "name": "username",
+      "description": "Username",
       "in": "body",
       "required": true,
       "schema": {
@@ -635,7 +500,7 @@
     }
    }
   },
-  "/userTypePart/{userid}": {
+  "/userTypePart/{username}": {
    "x-swagger-router-controller": "user_type_part",
    "get": {
     "operationId": "get_user_type_part",
@@ -645,7 +510,7 @@
     "description": "get a user",
     "parameters": [
      {
-      "name": "userid",
+      "name": "username",
       "type": "string",
       "in": "path",
       "required": true
@@ -655,7 +520,7 @@
      "200": {
       "description": "Success",
       "schema": {
-       "$ref": "#/definitions/GetUserTypePartResponse"
+       "$ref": "#/definitions/GeneralResponse"
       }
      },
      "default": {
@@ -674,8 +539,8 @@
     "description": "update a user type part",
     "parameters": [
      {
-      "name": "userid",
-      "description": "user id",
+      "name": "username",
+      "description": "username",
       "type": "string",
       "in": "path",
       "required": true
@@ -713,8 +578,8 @@
     "description": "delete a movie",
     "parameters": [
      {
-      "name": "userid",
-      "description": "User id",
+      "name": "username",
+      "description": "Username",
       "type": "string",
       "in": "path",
       "required": true
@@ -759,7 +624,7 @@
      "200": {
       "description": "Success",
       "schema": {
-       "$ref": "#/definitions/GeneralResponse"
+       "$ref": "#/definitions/GetUserResponse"
       }
      },
      "default": {
@@ -771,7 +636,42 @@
     }
    }
   },
-  "/user/{id}": {
+  "/usersignin": {
+   "x-swagger-router-controller": "user",
+   "post": {
+    "operationId": "user_signin",
+    "tags": [
+     "User"
+    ],
+    "description": "add a new user to the list",
+    "parameters": [
+     {
+      "name": "email",
+      "description": "User properties",
+      "in": "body",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/UserSignin"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Success",
+      "schema": {
+       "$ref": "#/definitions/GetUserResponse"
+      }
+     },
+     "default": {
+      "description": "Error",
+      "schema": {
+       "$ref": "#/definitions/ErrorResponse"
+      }
+     }
+    }
+   }
+  },
+  "/user/{username}": {
    "x-swagger-router-controller": "user",
    "get": {
     "operationId": "get_user",
@@ -781,7 +681,7 @@
     "description": "get a user",
     "parameters": [
      {
-      "name": "id",
+      "name": "username",
       "type": "string",
       "in": "path",
       "required": true
@@ -802,16 +702,16 @@
      }
     }
    },
-   "put": {
+   "patch": {
     "operationId": "update_user",
     "tags": [
      "User"
     ],
-    "description": "update a movie",
+    "description": "update a user",
     "parameters": [
      {
-      "name": "id",
-      "description": "Movie id",
+      "name": "username",
+      "description": "Username",
       "type": "string",
       "in": "path",
       "required": true
@@ -822,7 +722,7 @@
       "in": "body",
       "required": true,
       "schema": {
-       "$ref": "#/definitions/User"
+       "$ref": "#/definitions/UpdateUser"
       }
      }
     ],
@@ -849,7 +749,7 @@
     "description": "delete a user",
     "parameters": [
      {
-      "name": "id",
+      "name": "username",
       "description": "User id",
       "type": "string",
       "in": "path",
@@ -987,19 +887,41 @@
   },
   "GetUserResponse": {
    "required": [
-    "id",
-    "email",
-    "password"
+    "email"
    ],
    "properties": {
     "id": {
      "type": "string"
     },
+    "name": {
+     "type": "string"
+    },
+    "lastname": {
+     "type": "string"
+    },
     "email": {
      "type": "string"
     },
-    "password": {
+    "username": {
      "type": "string"
+    },
+    "passwordHash": {
+     "type": "string"
+    },
+    "salt": {
+     "type": "string"
+    },
+    "usertypeparts": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/TypePart"
+     }
+    },
+    "usertraits": {
+     "type": "array",
+     "items": {
+      "$ref": "#/definitions/Trait"
+     }
     }
    }
   },
@@ -1034,88 +956,12 @@
     }
    }
   },
-  "GetPeopleResponse": {
-   "required": [
-    "id"
-   ],
-   "properties": {
-    "id": {
-     "type": "string"
-    },
-    "name": {
-     "type": "string"
-    },
-    "lastname": {
-     "type": "string"
-    },
-    "occupation": {
-     "type": "string"
-    },
-    "isreal": {
-     "type": "string"
-    },
-    "from": {
-     "type": "string"
-    },
-    "personalitytype": {
-     "type": "string"
-    }
-   }
-  },
-  "GetDescriptionResponse": {
-   "required": [
-    "title"
-   ],
-   "properties": {
-    "title": {
-     "type": "string"
-    },
-    "description": {
-     "type": "string"
-    },
-    "tags": {
-     "type": "string"
-    },
-    "source": {
-     "type": "string"
-    },
-    "timestamp": {
-     "type": "string"
-    },
-    "personalitytype": {
-     "type": "string"
-    }
-   }
-  },
-  "GetUserTypePartResponse": {
-   "properties": {
-    "id": {
-     "type": "string"
-    },
-    "email": {
-     "type": "string"
-    },
-    "password": {
-     "type": "string"
-    }
-   }
-  },
-  "GetUserTraitResponse": {
-   "properties": {
-    "trait": {
-     "type": "string"
-    },
-    "isme": {
-     "type": "string"
-    }
-   }
-  },
   "UserTypePart": {
    "type": "object",
    "properties": {
-    "userid": {
+    "username": {
      "type": "string",
-     "description": "task object name"
+     "description": "username"
     },
     "type_percentage": {
      "type": "array",
@@ -1143,12 +989,12 @@
     }
    }
   },
-  "UserTrait": {
+  "UserTraits": {
    "type": "object",
    "properties": {
-    "userid": {
+    "username": {
      "type": "string",
-     "description": "task object name"
+     "description": "Username"
     },
     "traits": {
      "type": "array",
@@ -1186,7 +1032,7 @@
      "type": "string",
      "description": "user name"
     },
-    "Lastname": {
+    "lastname": {
      "type": "string",
      "description": "user lastname"
     }
@@ -1195,6 +1041,32 @@
     "email",
     "password"
    ]
+  },
+  "UpdateUser": {
+   "type": "object",
+   "properties": {
+    "name": {
+     "type": "string",
+     "description": "user name"
+    },
+    "lastname": {
+     "type": "string",
+     "description": "user lastname"
+    }
+   }
+  },
+  "UserSignin": {
+   "type": "object",
+   "properties": {
+    "email": {
+     "type": "string",
+     "description": "user email"
+    },
+    "password": {
+     "type": "string",
+     "description": "user password"
+    }
+   }
   },
   "Personality": {
    "type": "object",
