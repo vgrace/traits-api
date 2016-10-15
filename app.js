@@ -1,8 +1,7 @@
 /// <reference path="routes/index.js" />
 var express = require('express');
-var router = express.Router();
 var app = express();
-var routes = require('./routes/index');
+var routes = require('./routes/index.js');
 app.set('port', (process.env.PORT || 10010));
 
 app.use(express.static(__dirname + '/public'));
