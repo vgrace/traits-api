@@ -2,6 +2,7 @@
 
 var express = require('express');
 var app = express();
+var data = require('./data');
 
 app.set('port', (process.env.PORT || 10010));
 
@@ -11,9 +12,18 @@ app.get('/', function (request, response) {
     response.render('index');
 });
 
-app.get('/api/personality', function (request, response) {
-    response.status(500).send({
-        "message": "Hello, testing testing"
+app.get('/api/personality', function (req, res) {
+    data.getAllPersonalities(function (err, personalities) {
+        res.setHeader('Content-Type', 'application/json');
+        if (err) {
+            var ret_err = {
+                "message": err
+            };
+            res.status(500).send(ret_err);
+        }
+        else {
+            res.send(personalities);
+        }
     });
 });
 
