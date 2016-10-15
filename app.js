@@ -1,3 +1,4 @@
+/// <reference path="routes/index.js" />
 var express = require('express');
 var router = express.Router();
 var app = express();
@@ -28,3 +29,5 @@ app.listen(app.get('port'), function () {
 //app.listen(app.get('port'), function () {
 //    console.log('Node app is running on port', app.get('port'));
 //});
+
+module.exports = app;
