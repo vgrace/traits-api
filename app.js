@@ -11,6 +11,12 @@ app.get('/', function (request, response) {
     response.render('index');
 });
 
+app.get('/api/personality', function (request, response) {
+    response.status(500).send({
+        "message": "Hello, testing testing"
+    });
+});
+
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
 });
