@@ -2,20 +2,25 @@
 
 var express = require('express');
 var app = express();
-var data = require('./data/index.js');
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/api'));
+
+var data = require('./data');
 
 app.set('port', (process.env.PORT || 10010));
 
-app.use(express.static(__dirname + '/public'));
+
 
 app.get('/', function (request, response) {
     response.render('index');
 });
 
 app.get('/api/personality', function (req, res) {
+    console.log("/api/personality"); 
     data.getAllPersonalities(function (err, personalities) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
+            console.log("Error when getting"); 
             var ret_err = {
                 "message": err
             };

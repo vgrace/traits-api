@@ -2,9 +2,9 @@
  "swagger": "2.0",
  "info": {
   "version": "0.1.0",
-  "title": "Traits API"
+  "title": "Traits API Test"
  },
- "host": "api-traits.herokuapp.com",
+ "host": "localhost:10010",
  "basePath": "/api",
  "schemes": [
   "http",
@@ -309,9 +309,7 @@
    }
   },
   "/personality": {
-   "x-swagger-router-controller": "personality",
    "get": {
-    "operationId": "get_all_personalities",
     "tags": [
      "Personality"
     ],

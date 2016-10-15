@@ -1,9 +1,9 @@
 swagger: "2.0"
 info:
   version: "0.1.0"
-  title: Traits API
+  title: Traits API Test
 # during dev, should point to your local machine
-host: api-traits.herokuapp.com #localhost:10010
+host: localhost:10010 #api-traits.herokuapp.com #
 # basePath prefixes all resource paths 
 basePath: /api
 # 
@@ -218,9 +218,9 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /personality:
     # our controller name
-    x-swagger-router-controller: personality
+    #x-swagger-router-controller: personality
     get:
-      operationId: get_all_personalities
+      #operationId: get_all_personalities
       tags: [Personality]
       description: get personality list
       # define the type of response for Success "200" and Error
