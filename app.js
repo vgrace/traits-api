@@ -1,26 +1,37 @@
 //Just work work
-
+var http = require("http");
 var express = require('express');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 var app = express();
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/api'));
 
-var data = require('./data');
+app.use(express.static(__dirname + '/public'));
 
 app.set('port', (process.env.PORT || 10010));
 
-
+//Opt into services
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.get('/', function (request, response) {
     response.render('index');
 });
 
+
+
+app.listen(app.get('port'), function () {
+    console.log('Node app is running on port', app.get('port'));
+});
+
+
+var data = require('./data');
 app.get('/api/personality', function (req, res) {
-    console.log("/api/personality"); 
+    console.log("/api/personality");
     data.getAllPersonalities(function (err, personalities) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
-            console.log("Error when getting"); 
+            console.log("Error when getting");
             var ret_err = {
                 "message": err
             };
@@ -30,10 +41,6 @@ app.get('/api/personality', function (req, res) {
             res.send(personalities);
         }
     });
-});
-
-app.listen(app.get('port'), function () {
-    console.log('Node app is running on port', app.get('port'));
 });
 
 //var SwaggerExpress = require('swagger-express-mw');
