@@ -4,7 +4,8 @@ var personality = require('../api/controllers/personality');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', { title: 'Traits api' });
+    //res.render('index', { title: 'Traits api' });
+    res.render('index');
 });
 
 router.get('/api/personality', function (req, res) {
