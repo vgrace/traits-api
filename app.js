@@ -1,6 +1,7 @@
 //Just work work
 //var http = require("http");
 var express = require('express');
+var path = require('path');
 //var cookieParser = require('cookie-parser');
 //var bodyParser = require('body-parser')
 var app = express();
@@ -25,23 +26,23 @@ app.listen(app.get('port'), function () {
 });
 
 
-//var data = require('./data');
-//app.get('/api/personality', function (req, res) {
-//    console.log("/api/personality");
-//    data.getAllPersonalities(function (err, personalities) {
-//        res.setHeader('Content-Type', 'application/json');
-//        if (err) {
-//            console.log("Error when getting");
-//            var ret_err = {
-//                "message": err
-//            };
-//            res.status(500).send(ret_err);
-//        }
-//        else {
-//            res.send(personalities);
-//        }
-//    });
-//});
+var data = require('./data');
+app.get('/api/personality', function (req, res) {
+    console.log("/api/personality");
+    data.getAllPersonalities(function (err, personalities) {
+        res.setHeader('Content-Type', 'application/json');
+        if (err) {
+            console.log("Error when getting");
+            var ret_err = {
+                "message": err
+            };
+            res.status(500).send(ret_err);
+        }
+        else {
+            res.send(personalities);
+        }
+    });
+});
 
 //var SwaggerExpress = require('swagger-express-mw');
 //var express = require('express');
