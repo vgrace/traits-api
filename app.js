@@ -1,18 +1,18 @@
 //Just work work
-var http = require("http");
+//var http = require("http");
 var express = require('express');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser')
+//var cookieParser = require('cookie-parser');
+//var bodyParser = require('body-parser')
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
 
 app.set('port', (process.env.PORT || 10010));
 
-//Opt into services
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
+////Opt into services
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+//app.use(cookieParser());
 
 app.get('/', function (request, response) {
     response.render('index');
