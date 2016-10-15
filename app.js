@@ -2,7 +2,7 @@
 
 var express = require('express');
 var app = express();
-var data = require('./data');
+var data = require('./data/index.js');
 
 app.set('port', (process.env.PORT || 10010));
 

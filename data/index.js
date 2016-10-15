@@ -1,5 +1,5 @@
 ﻿(function (data) {
-    var database = require('./database');
+    var database = require('./database.js');
 
     /*
     * DESCRIPTION
