@@ -5,6 +5,7 @@ var express = require("express");
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var SwaggerExpress = require('swagger-express-mw');
+var routes = require('./routes/index');
 
 var app = express();
 app.set('port', (process.env.PORT || 10010));
@@ -22,7 +23,7 @@ app.use(cookieParser());
 
 //set the public static resource folder (makes the public folder public and accessible from the browser)
 app.use(express.static(__dirname + "/public"));
-
+app.use('/', routes);
 
 app.get('/', function (request, response) {
     response.render('pages/index');
